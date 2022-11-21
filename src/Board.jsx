@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Square from './Square';
 
 const Board = (props) => {
     const renderSquare = (i) => {
-        return <Square />;
+        return <Square value={squares[i]} handleClick={() => handleClick(i)} />
     }
 
-    const status = 'Next Player: X';
+    const handleClick = (i) => {
+        const squaresCopy = squares.slice();
+        squaresCopy[i] = xIsNext ? 'X' : 'O';
+        setSquares(squaresCopy);
+        setXIsNext(!xIsNext);
+    }
+
+    const initialBoard = Array(9).fill(null);
+    
+    const [squares, setSquares] = useState(initialBoard);
+    const [xIsNext, setXIsNext] = useState(true);
+
+    const status = `Next Player: ${xIsNext ? 'X' : 'O'}`
 
     return (
         <div>
