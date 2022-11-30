@@ -1,9 +1,8 @@
 import React from 'react';
 
-const Square = (props) => {
-    console.log(props.handleClick)
+const Square = ({ onClick, value }) => {
     return (
-        <button className="square" onClick={props.handleClick}>{props.value}</button>
+        <button className="square" onClick={onClick}>{value}</button>
     );
 }
 
